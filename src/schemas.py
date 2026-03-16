@@ -37,3 +37,39 @@ class TrackBatchResponse(BaseModel):
     results: list[TrackResponse]
     total: int
     summary: dict
+
+class LibraryUploadResponse(BaseModel):
+    """Resposta do upload de biblioteca de músicas."""
+    total_received: int
+    total_valid: int
+    total_invalid: int
+    invalid_rows: list[dict]
+    sample: list[dict]
+
+class ColumnReport(BaseModel):
+    """Relatório de saúde de uma coluna."""
+    name: str
+    dtype: str
+    missing_count: int
+    missing_pct: float
+    unique_count: int
+    sample_values: list
+
+class OutlierReport(BaseModel):
+    """Relatório de outliers de uma coluna numérica."""
+    column: str
+    total_outliers: int
+    outlier_pct: float
+    lower_bound: float
+    upper_bound: float
+
+class DataAuditResponse(BaseModel):
+    """Relatório completo de auditoria/saúde de um dataset."""
+    total_rows: int
+    total_columns: int
+    duplicate_rows: int
+    columns: list[ColumnReport]
+    outliers: list[OutlierReport]
+    numeric_summary: dict
+    correlations: dict
+    health_score: float
