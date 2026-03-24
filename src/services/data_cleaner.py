@@ -136,7 +136,6 @@ class DataCleaner:
         self.df = df
         return df
     
-    
     def _calculate_health_score(self, report: dict) -> float:
         total_rows = report["total_rows"]
         total_cols = report["total_columns"]
@@ -163,7 +162,6 @@ class DataCleaner:
 
         score = completude + unicidade + consistencia
         return round(max(0, min(100, score)), 1)
-    
     
     def validate_library_upload(self) -> dict:
         df = self.df
